@@ -52,6 +52,11 @@ const bot = new Mwn({
         console.log(level + ': ' + message);
     }
 });
+bot.setOptions({
+    editConfig: {
+        exclusionRegex: /\{\{nobots\}\}/i
+    }
+});
 let date = new Date();
 let month = date.toLocaleString('fr-FR', { month: 'long' });
 let year = date.getFullYear();
