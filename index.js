@@ -4,7 +4,11 @@ const fs=require('fs');
 const { Mwn } = require('mwn');
 //const { template } = require('mwn/build/static_utils');
 //console.log(Mwn)
-const already=fs.readFileSync('./already.txt', 'utf8').split('\n');
+const already=fs.readFileSync('./already.txt').toString().split('\n').map((item)=>{
+    return item.replace('\r', '')
+
+});
+console.log(already)
 const getpage=async(bot)=>{
     let need= await bot.read('Utilisateur:OrlodrimBot/Articles_sans_catégories_visibles')
   //  console.log(need)
@@ -15,6 +19,7 @@ const getpage=async(bot)=>{
     for (let line of lines){
         if (line.startsWith('*[[')){
             if (already.includes(line.replace('*[[', '').replace(']]', ''))){
+              console.log(line.replace('*[[', '').replace(']]', ''))
                 continue
             }
             need2.push(line.replace('*[[','').replace(']]',''))
