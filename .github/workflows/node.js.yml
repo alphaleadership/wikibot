@@ -8,6 +8,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  
+  workflow_dispatch:
+    
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -28,5 +33,15 @@ jobs:
         cache: 'npm'
     - run: npx bun install
     - run: npx bun run index.js
+      env:
+        BUN_ENV: production
+        WIKI_BOTUSER: {{$secrets.WIKI_BOTUSER}}
+        WIKI_BOTPASS: {{$secrets.WIKI_BOTPASS}}
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COMMIT_MESSAGE: "Update Wiki"
+        BRANCH: "main"
+      
       
     
