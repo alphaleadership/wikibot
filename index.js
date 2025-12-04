@@ -47,6 +47,9 @@ const bot = new Mwn({
         console.log(level + ': ' + message);
     }
 });
+let date = new Date();
+let month = date.toLocaleString('default', { month: 'long' });
+let year = date.getFullYear();
 bot.login().then(() => {
     console.log('Bot logged in');
     getpage(bot).catch((err) => {
@@ -63,7 +66,7 @@ bot.login().then(() => {
                 console.log('no categories')
               
                 bot.save('Utilisateur:Arbinger_bot/'+page[0], 
-                     '{{À catégoriser}}\n' + text.text
+                     '{{À catégoriser|date='+month+' '+year+'}}\n' + text.text
                  ,'ajout du bandeau page non catégorisé').then((res) => {
                     console.log(res);
                 }).catch((err) => {
