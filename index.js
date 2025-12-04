@@ -61,7 +61,11 @@ bot.login().then(() => {
         console.log(err);
     }).then((page) => {
       //  console.log(page);
-        getpagecontent(bot, page[0]).then((text) => {
+        if(page.length==0){
+            return
+        }
+        for (let index = 0; index < 5; index++) {
+              getpagecontent(bot, page[index]).then((text) => {
             console.log(text.template);
             if(text.template.includes('À catégoriser')){
                 console.log('already has category')
@@ -70,7 +74,7 @@ bot.login().then(() => {
             if(text.categories.length==0){
                 console.log('no categories')
               
-                bot.save('Utilisateur:Arbinger_bot/'+page[0], 
+                bot.save('Utilisateur:Arbinger_bot/'+page[index], 
                      '{{À catégoriser|date='+month+' '+year+'}}\n' + text.text
                  ,'ajout du bandeau page non catégorisé').then((res) => {
                     console.log(res);
@@ -80,7 +84,10 @@ bot.login().then(() => {
             }
            // fs.writeFileSync(page[0]+'test.txt', text.text);
         });
-        fs.appendFileSync('./already.txt', page[0]+'\n');
+        fs.appendFileSync('./already.txt', page[index]+'\n');
+          
+        }
+    
     });
 }).catch((err) => {
     console.log(err);
