@@ -53,7 +53,7 @@ const bot = new Mwn({
     }
 });
 let date = new Date();
-let month = date.toLocaleString('default', { month: 'long' });
+let month = date.toLocaleString('fr-FR', { month: 'long' });
 let year = date.getFullYear();
 bot.login().then(() => {
     console.log('Bot logged in');
