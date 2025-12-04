@@ -35,8 +35,8 @@ jobs:
     - run: npx bun run index.js
       env:
         BUN_ENV: production
-        WIKI_BOTUSER: {{$secrets.WIKI_BOTUSER}}
-        WIKI_BOTPASS: {{$secrets.WIKI_BOTPASS}}
+        WIKI_BOTUSER: ${{secrets.WIKI_BOTUSER}}
+        WIKI_BOTPASS: ${{secrets.WIKI_BOTPASS}}
     - uses: stefanzweifel/git-auto-commit-action@v5
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
