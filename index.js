@@ -75,7 +75,7 @@ bot.login().then(() => {
                 console.log('no categories')
               
                 bot.save('Utilisateur:Arbinger_bot/'+page[index], 
-                     '{{À catégoriser|date='+month+' '+year+'}}\n' + text.text
+                     '{{à catégoriser|date='+month+' '+year+'}}\n' + text.text
                  ,'ajout du bandeau page non catégorisé').then((res) => {
                     console.log(res);
                 }).catch((err) => {
